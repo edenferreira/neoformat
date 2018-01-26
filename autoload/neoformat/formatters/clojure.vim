@@ -4,9 +4,9 @@ endfunction
 
 function! neoformat#formatters#clojure#cljfmt() abort
     return {
-        \ 'exe': 'lein-exec-e',
-        \ "args": [shellescape('(require (quote [cljfmt.core])) (->> (java.io.BufferedReader. *in*) line-seq (clojure.string/join "\n") cljfmt.core/reformat-string println)')],
+        \ 'exe': 'lein',
+        \ "args": ['exec', '-e', shellescape('(require (quote [cljfmt.core])) (->> (java.io.BufferedReader. *in*) line-seq (clojure.string/join "\n") cljfmt.core/reformat-string println)')],
         \ 'stdin': 1,
-        \ 'env': ['LEIN_SUPPRESS_USER_LEVEL_REPO_WARNINGS=true']
+        \ 'env': ['LEIN_SILENT=true']
         \ }
 endfunction
